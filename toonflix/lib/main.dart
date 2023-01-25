@@ -22,7 +22,7 @@ class App extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 80,
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -50,7 +50,7 @@ class App extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 120,
+                  height: 40,
                 ),
                 Text(
                   'Total Balace',
@@ -71,7 +71,7 @@ class App extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,7 +89,7 @@ class App extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 100,
+                  height: 80,
                 ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
