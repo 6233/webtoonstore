@@ -9,8 +9,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  static const twentyFiveMinutes = 10;
-  int totalSeconds = twentyFiveMinutes;
+  static const defaultTime = 10;
+  int totalSeconds = defaultTime;
   bool isRunning = false;
   int totalPomodoros = 0;
   late Timer timer;
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         totalPomodoros += 1;
         isRunning = false;
-        totalSeconds = twentyFiveMinutes;
+        totalSeconds = defaultTime;
       });
       timer.cancel();
     } else {
@@ -42,13 +42,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  void onPausePressd() {
+  void onPausePressed() {
     timer.cancel();
     setState(
       () {
         isRunning = false;
       },
     );
+  }
+
+  void onResetPressed() {
+    timer.cancel();
+    setState(() {
+      isRunning = false;
+      totalSeconds = defaultTime;
+    });
   }
 
   String format(int seconds) {
@@ -78,17 +86,60 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Flexible(
             flex: 3,
-            child: Center(
-              child: IconButton(
-                iconSize: 120,
-                color: Theme.of(context).cardColor,
-                onPressed: isRunning ? onPausePressd : onStartPressed,
-                icon: Icon(isRunning
-                    ? Icons.pause_circle_outline
-                    : Icons.play_circle_outline),
-              ),
+            child: Column(
+              children: [
+                Flexible(
+                  child: Center(
+                    child: IconButton(
+                      iconSize: 120,
+                      color: Theme.of(context).cardColor,
+                      onPressed: isRunning ? onPausePressed : onStartPressed,
+                      icon: Icon(isRunning
+                          ? Icons.pause_circle_outline
+                          : Icons.play_circle_outline),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  child: IconButton(
+                    iconSize: 40,
+                    color: Theme.of(context).cardColor,
+                    onPressed: onResetPressed,
+                    icon: const Icon(Icons.timer_off_outlined),
+                  ),
+                ),
+              ],
             ),
           ),
+          // Flexible(
+          //   flex: 1,
+          //   child: Column(
+          //     children: [
+          //       Flexible(
+          //         flex: 1,
+          //         child: Center(
+          //           child: IconButton(
+          //             iconSize: 40,
+          //             color: Theme.of(context).cardColor,
+          //             onPressed: onResetPressed,
+          //             icon: const Icon(Icons.timer_off_outlined),
+          //           ),
+          //         ),
+          //       ),
+          //       Flexible(
+          //         flex: 1,
+          //         child: Center(
+          //           child: IconButton(
+          //             iconSize: 40,
+          //             color: Theme.of(context).cardColor,
+          //             onPressed: onResetPressed,
+          //             icon: const Icon(Icons.timer_off_outlined),
+          //           ),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Flexible(
             flex: 1,
             child: Row(
